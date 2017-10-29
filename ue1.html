@@ -1,0 +1,256 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Medientechnologien</title>
+<link rel="stylesheet" type="text/css" href="format.css">
+<style type="text/css">
+        <!--
+                 a:link {font-family:Arial;        font-size:10pt;        text-decoration:none;}
+                a:visited {font-family:Arial; font-size:10pt; text-decoration:none;}
+                a:hover {color:#FF3333; text-decoration:none; font-weight:normal; font-size:10pt;}
+        //-->
+</style>
+</head>
+
+<body>
+
+<iframe src="oben.html" width="800" height="120" name="IFrame3" id="IFrame3" scrolling="no" frameborder="0">
+         <p>Ihr Browser kann leider keine eingebe5tteten Frames anzeigen:Sie k&ouml;nnen die eingebettete Seite &uuml;ber den
+         folgenden.</p>
+</iframe>
+
+<h2><b>&Uuml;bung 1</b></h2>
+<br><h2><b>1. Aufgabe</b></h2>
+<h3>Aufgabe 1 - 1.1</h3>
+<p>Erzeuge zwei kurze Audio-Files (max. 5 s), davon eines mit Musik deiner Wahl aus dem Internet (wobei sich Musik mit
+einer relativ hohen Dynamik, d.h. Wechsel zwischen relativ leisen und lauten Abschnitten empfiehlt). Wähle eine geeignete
+Abtastfrequenz (begründen !) und achte auf gute Aussteuerung. Das zweite Audio-File soll eine Sprachaufnahme (mit dem
+Headset aufgesprochen) enthalten (Übersteuerung vermeiden !). Wähle hier eine Abtastfrequenz von 22 kHz, 16 bit
+Auflösung, mono. Die Einstellungen wie Abtastrate, Bitzahl und Kanalzahl können im</p>
+<ul>
+    <li>Wavestudio Samplitude</li>    
+</ul> 
+<p>vorgenommen werden. Die Eingangsquelle (wahlweise Audio-CD oder Mikrofon) kann im</p>
+<ul>
+    <li>Windows-Mixer 'Aufnahme'</li>
+</ul>
+<p>eingestellt werden.Nun lies die Musik- und die Sprachdatei mit wave_io ein und erkläre die Angaben im Header ! Wie hoch ist die Bitrate für die beiden Dateien?.</p>
+<br><p>Musikaufnahme</p>
+<audio controls><source src="./audio/Musik_DegeSondowski.wav" type="audio/wav"></audio>
+<p>Beschreibung</p>
+<p>L&ouml;sung</p>
+    
+    <div>
+    <img src="./pics/Musik.png" alt="---"width="1240" height="441">
+</div><br>
+<div>
+    <img src="./pics/Header_Musik.png" alt="-----------"width="350" height="300">
+</div><br>
+
+
+<p>L&ouml;sung</p>
+    <audio controls><source src="./audio/Sprache_DegeSondowski.wav" type="audio/wav"></audio>
+    <p>Beschreibung</p>
+<p>L&ouml;sung</p>
+    <div>
+    <img src="./pics/Sprache.png" alt="-----------"width="1237" height="442">
+</div><br>
+<div>
+    <img src="./pics/Sprache_header.png" alt="-----------"width="350" height="300">
+</div>
+
+    
+
+    
+    <!--
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+-->
+
+<br><h2><b>2. Aufgabe - Aliasing</b></h2>    
+<h3>Aufgabe 2 - 2.1</h3>
+<p>Modifiziere wave_io dahingehend, dass die Samples in der WAV-Datei in eine (lesbare) ASCII-Datei geschrieben
+werden. Lies die von mir geschickten Dateien (Sampling-Frequenz: 16 kHz) ein und bestimme aus den resultierenden Zahlenfolgen in der ASCII-Datei die Frequenz der Sinus-Schwingungen (Begründen und jeweils eine Periode für das
+Protokoll abspeichern). Überprüfe Deine Schätzung mit dem</p>
+<ul>
+    <li>Spektralanalyse-Tool GRAM</li>
+</ul>
+<p>(Plots ins Protokoll !).<br><br>
+(Vorgehensweise: Menüpunkt Analyze File, Einstellungen: Freq Scale: Linear, FFT Size: 512, Time scale: 1 msec)</p>
+    <br><p>Sine_hi05</p>
+<audio controls><source src="./audio/sine_hi05.wav" type="audio/wav"></audio>
+    <br><p>Sine_lo05</p>
+<audio controls><source src="./audio/sine_lo05.wav" type="audio/wav"></audio>
+    <p>L&ouml;sung:</p>
+    <p> FileWriter fw = new FileWriter("ASCII-sine_05.lo.txt");<br>
+        BufferedWriter bw = new BufferedWriter(fw);<br><br>
+    
+        for (int i=0; i < samples/2 ;i++) {<br><br>
+				
+				
+				bw.write(String.valueOf(readWavFile.sound[i]));<br>
+				bw.newLine();<br>
+				
+				
+			}</p><br>
+    <a href="./audio/ASCII-sine_05.hi.pdf">ASCII-sine_hi05</a><br>
+    <a href="./audio/ASCII-sine_05.lo.pdf">ASCII-sine_lo05</a><br>
+    
+    <p>Die Formel "f0 = 1/T0" dient zur Bestimmung der Frequenz einer Schwingung.<br>
+    Die Frequenz der Schwingung "f0" und die Periodendauer "T0" der abgetastetend Schwingung stehen in Verhältnis zueinander.<br>
+    f0=1/n*Ta : durch die Multiplikation der Anzahl der Abtastwerte pro Schwingung n und des Abstands zwischen zwei Abtastwerten Ta wird T0 ermittelt.<br><br>
+    "Ta=1/fa" --> "f0=1/n*fa"  (Ableitung, da fa Abtastfrequenz)<br><br>
+    Teilt man die Anzahl der Abtastwerte durch die Anzahl der Schwingungen innerhalb einer Periode erhält man n.</p>
+    <p>ASCII hi:<br>
+        16069<br>
+-13623<br>
+9102<br>
+-3196<br>
+-3196<br>
+9102<br>
+-13623<br>
+16069</p>
+    
+    <p>Es sind 7 Schwingungen in 8 Abtastungen zu vermerken.</p>
+
+
+<p>-----------------------</p>
+
+<div>
+    <img src="./pics/Frequenanalyse%20High.png" alt="-----------"width="655" height="514">
+</div>
+<p>ASCII lo: <br>
+    3196<br>
+9102<br>
+13623<br>
+16069<br>
+16069<br>
+13623<br>
+9102<br>
+3196<br>
+-3196<br>
+-9102<br>
+-13623<br>
+-16069<br>
+-16069<br>
+-13623<br>
+-9102<br>
+-3196<br>
+3196</p>
+    <p>Es sind 2Schwingungen auf 17Abtastungen festzustellen(1 auf 8)</p>
+<div>
+    <img src="./pics/Lo_Frequenzanalyse.png" alt="-----------"width="648" height="513">
+</div>
+
+
+
+
+<br><h3>Aufgabe 2 - 2.2</h3>
+<p>Bei der zeitlichen Diskretisierung eines Analogsignals muß das sogenannte Abtasttheorem eingehalten werden. Wie
+lautet es und wie läßt sich der Grenzfall, für den es gerade noch gilt, illustrieren (Zeichnung !)?</p>
+<p>L&ouml;sung</p>
+    <p>Das Abtasttheorem lautet: fa > 2*fma</p>
+    
+<table><tr>
+<td><img src="./pics/Abtasttheorem-Grenzfall.png" alt="Abtasttheorem-Grenzfall"width="350" height="300"></td>
+<td><img src="./pics/AbtasttheoremGrenzfall.png" alt="AbtasttheoremGrenzfall"width="350" height="300"></td>
+</tr></table>
+
+    
+<br><h3>Aufgabe 2 - 2.3</h3>
+<p>Bei herkömmlichen Soundkarten tritt systembedingt kein Aliasing auf, weil das Audiosignal stets geeignet vorbehandelt
+wird. Mit einem kleinen Trick läßt sich Aliasing jedoch nachweisen. Diese auch als Down-Sampling bekannte
+Methode besteht darin, dass man bei einer WAV-Datei z.B. jeden zweiten Abtastwert wegwirft. Man erhält so eine
+Wellenform, die genau die Hälfte der ursprünglichen Abtastfrequenz aufweist. Wenn man das Signal nicht vorher
+bandbegrenzt hat, können Aliasing-Verzerrungen hörbar werden.</p>
+<p>L&ouml;sung</p>
+    <p>Durch den Einsatz von Tiefpassfilter wird das Aliasing, bei herkömmlichen Soundkarten, verhindert. Frequenzen, die >= fa / 2,  werden herausgefiltert, so wird das Abtasttheorem eingehalten.</p>
+
+<br><h3>Aufgabe 2 - 2.4</h3>
+<p>Modifiziere wave_io dahingehend, dass vom eingelesenen Signal jeder zweite Abtastwert verworfen wird und das
+resultierende Signal abgespeichert wird. Der Header muß natürlich entsprechend verändert werden! Wende das
+resultierende Programm zunächst auf 'sine_lo.wav' und 'sine_hi.wav' an. Welche Frequenzen erscheinen nach dem DownSampling
+(Spektrogramm und WAVs ins Protokoll !)? Was würde passieren, wenn man geeignet bandbegrenzen würde?</p>
+    <p>L&ouml;sung:</p>
+    <p>for (int i=0; i < samples/2;i++) {<br><br>
+				readWavFile.sound[i] = readWavFile.sound[i*2];<br>
+				sampleRate = readWavFile.getSampleRate()/2;<br>
+				numFrames = readWavFile.getNumFrames()/2;<br>
+        
+    </p>
+    <p>Beim High ist es auf eine Schwingung runter und beim Low ist es gleich geblieben(1 Schwingung)</p>
+    <div>
+    <img src="./pics/Frequenanalyse%20Highout.png" alt="-----------"width="655" height="514">
+</div><br>
+     <div>
+    <img src="./pics/LoOut_Frequenzanalyse.png" alt="-----------"width="655" height="514">
+</div>
+    <p>Diese Problematik entsteht wenn man keine Bandbegrenzung durchführt und somit
+    das Abtasttheorem nicht erfüllt. Bei Low kam es zu keiner veränderung des Tons da  bei der Abtastung mit geringer Schwingung eine Reduktion der Abtastpunkte sich wenig auswirkt und somit auch das Abtasttheorem beibehalten wird.</p>
+    <!--
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+-->
+
+<br><h2><b>3. Aufgabe - Bitreduzierung</b></h2>
+<h3>Aufgabe 3 - 3.1</h3>
+<p>Die herkömmlichen PC-Soundkarten arbeiten meist entweder mit 16 oder 8 bit-Auflösung. Wie groß ist die Anzahl der
+bei diesen beiden Werten darstellbaren Amplitudenwerten ?</p>
+<p>L&ouml;sung:</p>
+Bei 16 bit Auflösung ist die höchstmögliche Anzahl der darstellbaren Amplitudenwerte 216=65536 und bei 8 bit Auflösung sind es 28=256.
+<br><h3>Aufgabe 3 - 3.2</h3>
+<p>Wir wollen nun wave_io so modifizieren, dass wir die Bitzahl reduzieren können. Dazu können wir z.B. alle Samples
+durch eine Potenz von 2 teilen (Integer-Division ohne Rest). Damit das resultierende Signal nicht leiser wird als das
+Original, kompensieren wir die Operation durch Multiplikation mit derselben Zweierpotenz. Zu beachten: Der Datentyp hat
+nach wie vor 16 bit!</p>
+<p>(Denselben Effekt erreicht man auch durch einfaches logisches 'Verunden' mit einem entsprechenden HEX-Wert, indem
+man mit dem LSB beginnend Bits 'ausblendet'.)</p>
+<p>L&ouml;sung</p>
+<p>for (int i=0; i < samples;i++) {<br><br>
+			
+				
+				readWavFile.sound[i] /= j;<br>
+				readWavFile.sound[i] *= j;<br>
+				
+			}</p>
+ 
+<br><h3>Aufgabe 3 - 3.3</h3>
+<p>Mit dem entstandenen Programm verändern wir die in Aufgabe 1 erzeugten Wave-Dateien. Ab welcher Bitzahl tritt bei
+Musik/Sprache eine hörbare/deutliche Verschlechterung der Qualität ein? Bei wieviel Bit ist das Sprachsignal noch
+verständlich ? (Waves für all diese Fälle ins Protokoll, Ausschnitte als Plots)</p>
+<p>Was charakterisiert das entstehende Quantisierungsgeräusch und macht es besonders störend? <br>
+    Das Quantisierungsgeräusch hat eine erhöhtes Energieaufkommen und je mehr Energie in den sound mit einfließt desto mehr hört man das rauschen bis irgendwann man nichts mehr hört.</p>
+<p>L&ouml;sung</p>
+     <p>Musik:</p>
+    <p>6bit(verschlächtert)</p>
+    <div>
+    <img src="./pics/Org_vs_6bit.png" alt="-----------"width="1232" height="414">
+</div><br>
+    <p>4Bit (deutlich verschlächtert)</p>
+    <div>
+    <img src="./pics/Org_vs_4bit.png" alt="-----------"width="1232" height="414">
+        
+</div>
+    
+    <p>Sprache:</p>
+    <p>10Bit (verschlächtert)</p>
+     <div>
+    <img src="./pics/Sprache_Org_vs_10bit.png" alt="-----------"width="1232" height="414">
+</div><br>
+    <p>9Bit (deutlich schlächter)</p>
+     <div>
+    <img src="./pics/Sprache_Org_vs_9bit.png" alt="-----------"width="1232" height="414">
+</div><br>
+    <p>7Bit (gerade noch so verständlich)</p>
+     <div>
+    <img src="./pics/Sprache_Org_vs_7bit.png" alt="-----------"width="1232" height="414">
+</div><br>
+<br><h3>Aufgabe 3 - 3.4</h3>
+<p>Modifiziere Dein Programm noch einmal so, dass auch das Differenzsignal zwischen Original und bitreduziertem
+Signal, das heißt, das Quantisierungsrauschen ausgegeben werden kann. Welchen Charakter hat das Rauschen bei einer
+Reduktion um 1 bit, wie verändert es sich bei zunehmender Bit-Reduktion? (Waves für all diese Fälle ins Protokoll,
+Ausschnitte als Plots)</p>
+<p>L&ouml;sung</p>
+    
+</body>
+</html>
