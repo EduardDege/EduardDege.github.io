@@ -251,6 +251,24 @@ Signal, das heißt, das Quantisierungsrauschen ausgegeben werden kann. Welchen C
 Reduktion um 1 bit, wie verändert es sich bei zunehmender Bit-Reduktion? (Waves für all diese Fälle ins Protokoll,
 Ausschnitte als Plots)</p>
 <p>L&ouml;sung</p>
-    
+	<p>short new_sound [] = new short[samples*Short.SIZE]; <br>
+			for (int i=0; i < samples;i++) {<br><br>
+			
+				new_sound[i] = readWavFile.sound[i];<br>
+				readWavFile.sound[i] /= j;<br>
+				readWavFile.sound[i] *= j;<br>
+				new_sound[i] -= readWavFile.sound[i];<br> 
+				readWavFile.sound[i] *= 2;<br>
+				
+			}</p>
+	<div>
+    <img src="./pics/Qunat_2bits.png" alt="-----------"width="655" height="514">
+</div><br>
+	<div>
+    <img src="./pics/Quant_3bits.png" alt="-----------"width="655" height="514">
+		
+</div><br>
+	<p>Bei einer Reduktion um 1 bit ist das Differenzsignal ein intensives Rauschen. Bei zunehmender Bitzahl wird das signal dem Ursprungssignal ähnlicher.</p>
+	
 </body>
 </html>
