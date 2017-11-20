@@ -144,8 +144,22 @@ Richtung. (Ortsfrequenz berechnen und jeweils eine Periode horizontal und eine v
     <p>Erzeuge aus deinen eigenen Farbbildern Graustufen-Bilder. Dazu muss der Helligkeitswert Y aus den RGB-Werten errechnet werden (wie und woher kommt die Formel?). Mit
 diesem Y-Wert wird dann die R, G und B-Information überschrieben. Speichere die Graustufenbilder ab.</p>
 <p>L&ouml;sung</p>
-    <p>Die Formel setzt sich wie Folgt zusamen R=G=B => Grauwert. Diese Formel setzt sich daher so zusammen, da unser Auge auf jeden Farbston mit spezieller wellenlänge, unterschiiedlich war nimmt. Unser Auge nimmt die Grüne Farbe am hellsten war, den Rotton etwas weniger hell und das Blau noch weniger. Diesen Unterschied müssen wir ausgleichen dadurch ensteht diese Formel y= 0.3*rot + 0.6*grün + 0.1*blau. Gängige Programme haben diese Formel schon integriert, daher kann man R=G=B verwenden. In Java benutzen wir y= 0.33*R + 0.33*G + 0.33*B oder ds = (r+g+b)/3; wie wir.</p>
-    
+    <p>Die Formel setzt sich wie Folgt zusamen R=G=B => Grauwert. Diese Formel setzt sich daher so zusammen, da unser Auge auf jeden Farbston mit spezieller wellenlänge, unterschiiedlich war nimmt. Unser Auge nimmt die Grüne Farbe am hellsten war, den Rotton etwas weniger hell und das Blau noch weniger. Diesen Unterschied müssen wir ausgleichen dadurch ensteht diese Formel y= 0.3*rot + 0.6*grün + 0.1*blau. Gängige Programme haben diese Formel schon integriert, daher kann man R=G=B verwenden. In Java benutzen wir y= 0.33*R + 0.33*G + 0.33*B oder ds = (r+g+b)/3; wie wir.</p></br>
+        <p>Code:</p>
+        <p>for(int y = 0; y < bmp.image.getHeight(); y++) {
+            for(int x = 0;x < bmp.image.getWidth(); x++) {
+
+
+                r = bmp.image.getRgbPixel(x, y).r;
+                g = bmp.image.getRgbPixel(x, y).g;
+                b = bmp.image.getRgbPixel(x, y).b;
+
+                ds = (r+g+b)/3;
+
+                bmp.image.getRgbPixel(x, y).r = ds;
+                bmp.image.getRgbPixel(x, y).g = ds;
+                bmp.image.getRgbPixel(x, y).b = ds;
+                }</p>
         <table><tr>
     <td><img src="./pics/WandGRAU.bmp" alt="Wand-Grau" width="350" height="300"></td>
     <td><img src="./pics/Bl%D0%91tenfeldGRAU.bmp" alt="Blütenfeld-Grau" width="350" height="300"></td>
@@ -173,7 +187,22 @@ deinen beiden Bildern der Fall ist</p>
     <br><p>L&ouml;sung</p>
     
     <p>Es macht nur beim Horizontalen Bild sinn, da man die Pixel nur auf der Horizontalen verschieben tut, auf der Vertikalen würde man davon nichts merken und umgekehrt fürs vertikal Sampling.</p>
-     
+        <p>Code:</p>
+        <p>for(int y = 0; y < bmp.image.getHeight(); y++) {
+            for(int x = 0;x < bmp.image.getWidth(); x++) {
+
+
+                r = bmp.image.getRgbPixel(x, y).r;
+                g = bmp.image.getRgbPixel(x, y).g;
+                b = bmp.image.getRgbPixel(x, y).b;
+
+                ds = (r+g+b)/3;
+
+               bmp.image.getRgbPixel(x, y).r = ds;
+               bmp.image.getRgbPixel(x, y).g = ds;
+               bmp.image.getRgbPixel(x, y).b = ds;
+                }</p>
+                
     <p>Das Downsampling bei dem Horizontalen Bild, hat bereits das manipulieren einer Zeile Auswirkungen und bei drei Zeilen tritt der Moire-Effekt auf. </p>
     <img src="./pics/grating_H12HDOWNSAMPLE.bmp" alt="DOWNSAMPLE" width="350" height="300"></td>
     
@@ -218,11 +247,11 @@ hat nach wie vor eine Bittiefe von 24Bit (8bit pro Farbe!)<br><br>(Denselben Eff
 Verschlechterung der Qualität ein? Wie kann man diese Verschlechterung am besten beschreiben? (Alle Ergebnisbilder ins Übungsprotokoll)</p>
     <p>L&ouml;sung</p>
    
-    <p>Bei dem 5Bit Detailirten Bild, tritt die Verschlechterung bei 5Bit ein und ähnliche Farben laufen ineinander über.</p>
+    <p>Bei 5Bit laufen die farben ineinander über, die aber ab 4 Bit Sichtbar</p>
    <table><tr>
-    <td><img src="./pics/BlütenfeldBitRed.bmp" alt="Blütenfeld-1bit" width="350" height="300"></td>
+    <td><img src="./pics/BlütenfeldBitRed.bmp" alt="Blütenfeld-5bit" width="350" height="300"></td>
     <td><img src="./pics/BlütenfeldBitRed6bit.bmp" alt="Blütenfeld-6bit" width="350" height="300"></td>
-    <td><img src="./pics/BlütenfeldBitRed7bit.bmp" alt="Blütenfeld-6bit" width="350" height="300"></td>
+    <td><img src="./pics/BlütenfeldBitRed7bit.bmp" alt="Blütenfeld-7bit" width="350" height="300"></td>
         </tr></table>
     
     <p>Bei dem Flächenbild treten leichte Veränderungen bei 3Bit auf, deutlicher werden sie ab 5Bit Veränderung. </p>
@@ -239,7 +268,40 @@ Verschlechterung der Qualität ein? Wie kann man diese Verschlechterung am beste
 dabei, dass bei der Differenzbildung negative und positive Werte auftreten können. Diese müssen wieder in den Wertebereich 0...255 transformiert werden, d.h. auf den Mittelwert
 127 gebracht werden (wie?). (Bilder all dieser Fälle ins Übungsprotokoll)</p>
     <p>L&ouml;sung</p>
+
     <p>Falls die Zahlen negative sind, werden die Zahlen mit -1 Mal genommen, damit sie in einen Wertebereich von 0-255 kommen</p>
+<p>Code:</p>
+<p>for(int y = 0; y < bmp.image.getHeight(); y++) {
+            for (int x = 0; x < bmp.image.getWidth(); x++) {
+
+                rO = bmp.image.getRgbPixel(x, y).r;
+                gO = bmp.image.getRgbPixel(x, y).g;
+                bO = bmp.image.getRgbPixel(x, y).b;
+
+               r = bmp.image.getRgbPixel(x, y).r/j;
+                g = bmp.image.getRgbPixel(x, y).g/j;
+                b = bmp.image.getRgbPixel(x, y).b/j;
+
+                rg = rO - r;
+                gb = gO - g;
+                bg = bO - b;
+
+                if(rg < 0) {
+                   rg *= -1;
+               }
+                if (gb < 0) {
+                    gb *= -1;
+                }
+                if (bg < 0) {
+                    bg = -1;
+               }
+
+                bmp.image.getRgbPixel(x, y).r = rgf;
+                bmp.image.getRgbPixel(x, y).g = gbf;
+               bmp.image.getRgbPixel(x, y).b = bgf;
+
+            }
+                           }</p>
     <p>Fälle der Detail Bilder</p>
      <table><tr>
     <td><img src="./pics/BlütenfeldBitDif6.bmp" alt="Blütenfeld-6Dif" width="350" height="300"></td>
