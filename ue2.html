@@ -146,19 +146,19 @@ diesem Y-Wert wird dann die R, G und B-Information überschrieben. Speichere die
 <p>L&ouml;sung</p>
     <p>Die Formel setzt sich wie Folgt zusamen R=G=B => Grauwert. Diese Formel setzt sich daher so zusammen, da unser Auge auf jeden Farbston mit spezieller wellenlänge, unterschiiedlich war nimmt. Unser Auge nimmt die Grüne Farbe am hellsten war, den Rotton etwas weniger hell und das Blau noch weniger. Diesen Unterschied müssen wir ausgleichen dadurch ensteht diese Formel y= 0.3*rot + 0.6*grün + 0.1*blau. Gängige Programme haben diese Formel schon integriert, daher kann man R=G=B verwenden. In Java benutzen wir y= 0.33*R + 0.33*G + 0.33*B oder ds = (r+g+b)/3; wie wir.</p></br>
         <p>Code:</p>
-        <p>for(int y = 0; y < bmp.image.getHeight(); y++) {
-            for(int x = 0;x < bmp.image.getWidth(); x++) {
+        <p>for(int y = 0; y < bmp.image.getHeight(); y++) {</br>
+            for(int x = 0;x < bmp.image.getWidth(); x++) {</br></br>
 
 
-                r = bmp.image.getRgbPixel(x, y).r;
-                g = bmp.image.getRgbPixel(x, y).g;
-                b = bmp.image.getRgbPixel(x, y).b;
+                r = bmp.image.getRgbPixel(x, y).r;</br>
+                g = bmp.image.getRgbPixel(x, y).g;</br>
+                b = bmp.image.getRgbPixel(x, y).b;</br></br>
 
-                ds = (r+g+b)/3;
+                ds = (r+g+b)/3;</br>
 
-                bmp.image.getRgbPixel(x, y).r = ds;
-                bmp.image.getRgbPixel(x, y).g = ds;
-                bmp.image.getRgbPixel(x, y).b = ds;
+                bmp.image.getRgbPixel(x, y).r = ds;</br>
+                bmp.image.getRgbPixel(x, y).g = ds;</br>
+                bmp.image.getRgbPixel(x, y).b = ds;</br>
                 }</p>
         <table><tr>
     <td><img src="./pics/WandGRAU.bmp" alt="Wand-Grau" width="350" height="300"></td>
@@ -188,19 +188,19 @@ deinen beiden Bildern der Fall ist</p>
     
     <p>Es macht nur beim Horizontalen Bild sinn, da man die Pixel nur auf der Horizontalen verschieben tut, auf der Vertikalen würde man davon nichts merken und umgekehrt fürs vertikal Sampling.</p>
         <p>Code:</p>
-        <p>for(int y = 0; y < bmp.image.getHeight(); y++) {
-            for(int x = 0;x < bmp.image.getWidth(); x++) {
+        <p>for(int y = 0; y < bmp.image.getHeight(); y++) {</br>
+            for(int x = 0;x < bmp.image.getWidth(); x++) {</br></br>
 
 
-                r = bmp.image.getRgbPixel(x, y).r;
-                g = bmp.image.getRgbPixel(x, y).g;
-                b = bmp.image.getRgbPixel(x, y).b;
+                r = bmp.image.getRgbPixel(x, y).r;</br>
+                g = bmp.image.getRgbPixel(x, y).g;</br>
+                b = bmp.image.getRgbPixel(x, y).b;</br></br>
 
-                ds = (r+g+b)/3;
+                ds = (r+g+b)/3;</br>
 
-               bmp.image.getRgbPixel(x, y).r = ds;
-               bmp.image.getRgbPixel(x, y).g = ds;
-               bmp.image.getRgbPixel(x, y).b = ds;
+               bmp.image.getRgbPixel(x, y).r = ds;</br>
+               bmp.image.getRgbPixel(x, y).g = ds;</br>
+               bmp.image.getRgbPixel(x, y).b = ds;</br>
                 }</p>
                 
     <p>Das Downsampling bei dem Horizontalen Bild, hat bereits das manipulieren einer Zeile Auswirkungen und bei drei Zeilen tritt der Moire-Effekt auf. </p>
@@ -271,36 +271,36 @@ dabei, dass bei der Differenzbildung negative und positive Werte auftreten könn
 
     <p>Falls die Zahlen negative sind, werden die Zahlen mit -1 Mal genommen, damit sie in einen Wertebereich von 0-255 kommen</p>
 <p>Code:</p>
-<p>for(int y = 0; y < bmp.image.getHeight(); y++) {
-            for (int x = 0; x < bmp.image.getWidth(); x++) {
+<p>for(int y = 0; y < bmp.image.getHeight(); y++) {</br>
+            for (int x = 0; x < bmp.image.getWidth(); x++) {</br></br>
 
-                rO = bmp.image.getRgbPixel(x, y).r;
-                gO = bmp.image.getRgbPixel(x, y).g;
-                bO = bmp.image.getRgbPixel(x, y).b;
+                rO = bmp.image.getRgbPixel(x, y).r;</br>
+                gO = bmp.image.getRgbPixel(x, y).g;</br>
+                bO = bmp.image.getRgbPixel(x, y).b;</br></br>
 
-               r = bmp.image.getRgbPixel(x, y).r/j;
-                g = bmp.image.getRgbPixel(x, y).g/j;
-                b = bmp.image.getRgbPixel(x, y).b/j;
+               r = bmp.image.getRgbPixel(x, y).r/j;</br>
+                g = bmp.image.getRgbPixel(x, y).g/j;</br>
+                b = bmp.image.getRgbPixel(x, y).b/j;</br>
 
-                rg = rO - r;
-                gb = gO - g;
-                bg = bO - b;
+                rg = rO - r;</br>
+                gb = gO - g;</br>
+                bg = bO - b;</br></br>
 
-                if(rg < 0) {
-                   rg *= -1;
+                if(rg < 0) {</br>
+                   rg *= -1;</br>
+               }</br>
+                if (gb < 0) {</br>
+                    gb *= -1;</br>
+                }</br>
+                if (bg < 0) {</br>
+                    bg = -1;</br>
                }
-                if (gb < 0) {
-                    gb *= -1;
-                }
-                if (bg < 0) {
-                    bg = -1;
-               }
+</br>
+                bmp.image.getRgbPixel(x, y).r = rgf;</br>
+                bmp.image.getRgbPixel(x, y).g = gbf;</br>
+               bmp.image.getRgbPixel(x, y).b = bgf;</br>
 
-                bmp.image.getRgbPixel(x, y).r = rgf;
-                bmp.image.getRgbPixel(x, y).g = gbf;
-               bmp.image.getRgbPixel(x, y).b = bgf;
-
-            }
+            }</br>
                            }</p>
     <p>Fälle der Detail Bilder</p>
      <table><tr>
