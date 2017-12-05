@@ -19,24 +19,373 @@
          folgenden.</p>
 </iframe>
 
-<h2>&Uuml;bung 3</h2>
-<br><h3>Aufgabe 1 - 1.1</h3>
+<h2><b>&Uuml;bung 3</b></h2>
+    <p>Zuerst machen uns mit der Synthesizer-Software REAKTOR etwas vertraut - eine Übersicht mit ersten Arbeitsschritten, findet sich hier</p>
+ <ul>   
+     <li>
+         <a haref="http://public.beuth-hochschule.de/~rozek/dat31-lab2.htm"><b>http://public.beuth-hochschule.de/~rozek/dat31-lab2.htm</b></a>
+     </li>
+</ul>
+<p>(allerdings noch bezogen auf REAKTOR Version 2.3 !!!). Die folgendethesizer-Struktur werden wir in den nächsten Arbeitspu Synnkten aufbauen.</p>
+
+
+    
+    
+<br><h3><b>Aufgabe 1</b></h3>
+
+<p><b>Einfache Schwingungsformen:</b> Zunächst brauchen wir nur ein PitchGate und einen Oszillator. Im Ensemble-View fügen wir ein Oszilloskop ein, mit dem wir das Zeitsignal
+des Klangs darstellen können. Nun schauen wir uns die Wellenformen der Grundklänge des Oszillators an (Sägezahn, Rechteck, etc.). Wir können nun Beispiele der
+einzelnen Klänge in Reaktor aufzeichnen. Über das Menü "View->Show Recorderbox" exportieren wir die Klänge als wav und lesen sie in GRAM über 'Scan File' ein. Um das
+Spektrum anzuzeigen, müssen wir den Display-Type "Line" auswählen. Es erscheint eine Liniendarstellung des Amplitudenspektrums mit dB-Angaben (Toggle Grid). Aus
+diesen können wir dann lineare Prozentwerte mit Bezug auf die Grundschwingung berechnen. Wir setzen dazu die Grundschwingung mit 0 dB entspr. 100 % an. Variiere die
+Pulsweite (d.h. das zeitl. Verhältnis zwischen positivem und negativem Schwingungsteil) bei der Rechteckschwingung (Regler `P-Width´ am Oszillator) und beobachte, wie sich das Verhältnis der Obertöne verändert. (Ins Ergebnisprotokoll: Bilder der Spektren für drei markante P-Width-Einstellungen beim Rechteck, ein Sägezahn, ein Dreieck,
+Ausschnitte aus den wavs, Angaben der Frequenzen und Amplituden in dB und Prozentwerten für die Grundschwingung und die ersten drei Obertöne, bei denen die
+Amplitude größer 0 ist).</p>
+    
+<p>L&ouml;sung</p>
+
+<!--
 <video controls width="650" height="550">
-    <!--source src="./video/greenscreen.webm" type="video/mp4" /-->
+    source src="./video/greenscreen.webm" type="video/mp4" /
     <source src="./video/wildlife.webm" type="video/webm" />
 </video>
-<p>Beschreibung</p>
+-->
+<p><b>Schaltung:</b></p>
+    <img src="./pics/Puls05.png" alt="Puls05" width="350" height="300">
+    
+    <p><b>Aufnahme Rechteck mit P-Width 0,5</b></p>
+    <audio controls><source src="./audio/puls05.wav" type="audio/wav"></audio>
+    
+    <p>Gram Screenshot:</p>
+      <img src="./pics/gram05.png" alt="gram05" width="350" height="300">
+    <p></p><br><br>
+    
+    <table border=8 cellpadding=12>
+      <tr>
+        <th></th>
+        <th>Frequenzen Hz</th>
+        <th>Amplitude in dB</th>
+        <th>Differenz</th>
+        <th>Prozentwert</th>
+      </tr>
+      <tr>
+        <td>f0</td>
+        <td>237</td>
+        <td>4</td>
+        <td>-3</td>
+        <td>~71%</td>
+      </tr>
+      <tr>
+        <td>f1</td>
+        <td>474</td>
+        <td>1</td>
+        <td>-7</td>
+        <td>~45%</td>
+      </tr>
+    <tr>
+        <td>f2</td>
+        <td>668</td>
+        <td>-6</td>
+        <td>-4</td>
+        <td>~63%</td>
+      </tr>
+          <tr>
+        <td>f3</td>
+        <td>1141</td>
+        <td>-10</td>
+        <td>-1</td>
+        <td>~89%</td>
+      </tr>
+    </table>
+    <p></p><br><br>
+    
+    
+    
+     <p><b>Aufnahme Rechteck mit P-Width 0,75</b></p>
+    <audio controls><source src="./audio/puls075.wav" type="audio/wav"></audio>
+    
+   <p><b>Schaltung:</b></p>
+    <img src="./pics/Puls075.png" alt="puls075" width="350" height="300">
+    
+    <p>Gram Screenshot:</p>
+      <img src="./pics/gram075.png" alt="075" width="350" height="300">
+    <p></p><br><br>
+    
+    <table border=8 cellpadding=12>
+      <tr>
+        <th></th>
+        <th>Frequenzen Hz</th>
+        <th>Amplitude in dB</th>
+        <th>Differenz</th>
+        <th>Prozentwert</th>
+      </tr>
+      <tr>
+        <td>f0</td>
+        <td>452</td>
+        <td>-22</td>
+        <td>0</td>
+        <td>100%</td>
+      </tr>
+      <tr>
+        <td>f1</td>
+        <td>711</td>
+        <td>-24</td>
+        <td>-2</td>
+        <td>~79%</td>
+      </tr>
+    <tr>
+        <td>f2</td>
+        <td>947</td>
+        <td>-26</td>
+        <td>-2</td>
+        <td>~79%</td>
+      </tr>
+          <tr>
+        <td>f3</td>
+        <td>1184</td>
+        <td>-28</td>
+        <td>-2</td>
+        <td>~79%</td>
+      </tr>
+    </table><br><br>
+    
+    
+    
+    
+     <p><b>Aufnahme Rechteck mit P-Width 0,25</b></p>
+    <audio controls><source src="./audio/puls025.wav" type="audio/wav"></audio>
+    
+    <p><b>Schaltung:</b></p>
+    <img src="./pics/Puls025.png" alt="puls025" width="350" height="300">
+    
+    <p>Gram Screenshot:</p>
+      <img src="./pics/gram025.png" alt="gram025" width="350" height="300">
+    <p></p><br><br>
+    
+    <table border=8 cellpadding=12>
+      <tr>
+        <th></th>
+        <th>Frequenzen Hz</th>
+        <th>Amplitude in dB</th>
+        <th>Differenz</th>
+        <th>Prozentwert</th>
+      </tr>
+      <tr>
+        <td>f0</td>
+        <td>194</td>
+        <td>6</td>
+        <td>-8</td>
+        <td>~40%</td>
+      </tr>
+      <tr>
+        <td>f1</td>
+        <td>474</td>
+        <td>-2</td>
+        <td>-9</td>
+        <td>~35%</td>
+      </tr>
+    <tr>
+        <td>f2</td>
+        <td>689</td>
+        <td>-11</td>
+        <td>-5</td>
+        <td>~56%</td>
+      </tr>
+          <tr>
+        <td>f3</td>
+        <td>947</td>
+        <td>-6</td>
+        <td>-9</td>
+        <td>~35%</td>
+      </tr>
+    </table>
+    <p></p><br><br>
+    
+    
+    
+    
+     <p><b>Aufnahme Segezahn:</b></p>
+    <audio controls><source src="./audio/saw.wav" type="audio/wav"></audio>
+    
+    <p>Schaltung:</p>
+      <img src="./pics/saw.png" alt="saw" width="350" height="300">
+   
+    <p>Gram Screenshot:</p>
+    <img src="./pics/sawgGram.PNG" alt="gram-saw" width="350" height="300">
+    <p></p><br><br>
+    
+    <table border=8 cellpadding=12>
+      <tr>
+        <th></th>
+        <th>Frequenzen Hz</th>
+        <th>Amplitude in dB</th>
+        <th>Differenz</th>
+        <th>Prozentwert</th>
+      </tr>
+      <tr>
+        <td>f0</td>
+        <td>194</td>
+        <td>-19</td>
+        <td>-5</td>
+        <td>~56%</td>
+      </tr>
+      <tr>
+        <td>f1</td>
+        <td>474</td>
+        <td>-24</td>
+        <td>-3</td>
+        <td>~71%</td>
+      </tr>
+    <tr>
+        <td>f2</td>
+        <td>689</td>
+        <td>-27</td>
+        <td>-4</td>
+        <td>~63%</td>
+      </tr>
+          <tr>
+        <td>f3</td>
+        <td>969</td>
+        <td>-31</td>
+        <td>-1</td>
+        <td>~89%</td>
+      </tr>
+    </table>
+    <p></p><br><br>
+    
+    
+    
+    
+     <p><b>Aufnahme Dreieck</b></p>
+    <audio controls><source src="./audio/tri.wav" type="audio/wav"></audio>
+    
+     <p>Schaltung:</p>
+      <img src="./pics/tri.png" alt="Dreick-Schwingung" width="350" height="300">
+    
+    <p>Gram Screenshot:</p>
+      <img src="./pics/triGram.PNG" alt="Gram-Dreieck" width="350" height="300">
+    <p></p><br><br>
+    
+    <table border=8 cellpadding=12>
+      <tr>
+        <th></th>
+        <th>Frequenzen Hz</th>
+        <th>Amplitude in dB</th>
+        <th>Differenz</th>
+        <th>Prozentwert</th>
+      </tr>
+      <tr>
+        <td>f0</td>
+        <td>237</td>
+        <td>-17</td>
+        <td>-18</td>
+        <td>~13%</td>
+      </tr>
+      <tr>
+        <td>f1</td>
+        <td>689</td>
+        <td>-35</td>
+        <td>-8</td>
+        <td>~35%</td>
+      </tr>
+    <tr>
+        <td>f2</td>
+        <td>1163</td>
+        <td>-43</td>
+        <td>-6</td>
+        <td>~50%</td>
+      </tr>
+          <tr>
+        <td>f3</td>
+        <td>1658</td>
+        <td>-49</td>
+        <td>-5</td>
+        <td>~56%</td>
+      </tr>
+    </table>
+    <p></p><br><br>
+    
+    <p><b>Die Formel zu Berechnung der Prozentwerte</b></p>
+    <p>d = Differenz        | p = Prozentwert<br><br>
+d = 20 * log(p /100)        | umstellen nach p<br>
+                            | : 20<br>
+d /20 = log(p /100)         | 10^( )<br>
+10^(d / 20) = p /100        | * 100<br><br>
+
+<b>p = 100 * 10^(d /20)</b></p>
+
+
+
+
+<br><h3><b>Aufgabe 2</b></h3>
+
+<p><b>Schwebung:</b> Nun bringen wir einen zweiten Oszillator zum Einsatz. Um die Ausgänge der beiden Oszillatoren anschließen und in der Lautstärke regeln zu können,
+benötigen wir eine Mixing Matrix 2x2, von der wir allerdings den zweiten Ausgang löschen können. Zunächst stellen wir beide Oszillatoren auf exakt dieselbe Frequenz und
+Dreiecksschwingung. Dann verstimmen wir den zweiten gegen den ersten und zeichnen den Klang auf, wenn wir gerade eine Amplitudenmodulation feststellen (Fall A), d.h.
+einen in der Lautstärke schwankenden Ton. Wir verstimmen die Oszillatoren weiter gegeneinander, bis wir den Eindruck einer Dissonanz haben (Fall B), d.h. es entsteht ein
+rauher, unangenehmer Klang.</p>
+
+<p><small>Nun stellen wir mit GRAM für die beiden Fälle die Mittel- und Differenzfrequenzen der Schwingungen fest. Es kann sein, dass die Genauigkeit von GRAM beim Fall A zur Bestimmung der Differenzfrequenz nicht
+ausreicht. Man kann die Differenzfrequenz aber auch aus dem Oszillogramm der amplitudenmodulierten Schwingung berechnen (z.B. in Samplitude anschauen). Die Periodendauer entspricht nämlich exakt dem
+Abstand zwischen zwei Punkten maximaler (oder minimaler) Amplitude. Ins Ergebnisprotokoll für beide Fälle: Mittenfrequenz und Differenzfrequenz, Spektrogramm und wav.</small></p>
+
+<p>L&ouml;sung</p>
+    
+   <p>Fall <b>A</b></p>
+      <img src="./pics/AGram.PNG" alt="AbtastTheoremGrenzfall" width="350" height="300">
+      <p>Messungen:</p>
+      <p>659ms=0,659s</p>
+      <p>59ms=0,059s</p>
+      <p>Mittenfrequenz: 1/0,059s=16,9Hz</p>
+      <p>Differenzsequenz: 1/0,659s=1,517Hz</p>
+      <p><b>Aufnahme</b></p>
+    <audio controls><source src="./audio/fallAi.wav" type="audio/wav"></audio>
+     <p></p><br> 
+    
+    <p>Fall <b>B</b></p>
+      <img src="./pics/BGram.PNG" alt="AbtastTheoremGrenzfall" width="350" height="300">
+    <p>Messungen:</p>
+    <p>16ms=0,016s</p>
+    <p>9ms=0,009s</p>
+    <p>Mittenfrequenz: 1/0,009s=111,3Hz</p>
+      <p>Differenzsequenz: 1/0,016s=62,5Hz</p>
+    <p><b>Aufnahme</b></p>
+    <audio controls><source src="./audio/fallB.wav" type="audio/wav"></audio>
+
+
+    
+
+<br><h3><b>Aufgabe 3</b></h3>
+    
+<p><b>Klangnachbildung:</b> Wir wollen nun versuchen, selber einen coolen Klang zu kreieren. Die einzigen Anforderungen sind, dass die Grundfrequenz bei 220 Hz liegen soll, was
+einem A entspricht, und dass es ein monophoner Klang ist, d.h. dass nur eine Taste gedrückt wird und eine Note erklingt. Da es etwas schwierig ist, die Frequenz exakt zu
+bestimmen, hier der Hinweis, dass wenn alle Pitch-Regler auf 0, d.h. in Mittelstellung sind, beim Drücken der Taste "N" die Grundfrequenz des Oszillators etwa 220 Hz
+beträgt. Zunächst wählen wir die Grundwellenform (Rechteck, Sägezahn, etc.), die klanglich am besten zu unserem Instrument paßt (auch mit dem Filter experimentieren ! ).</p>
+    
+<p><small>Um die Hüllkurve entsprechend manipulieren zu können, brauchen wir ein ADSR-Makro, das wir zwischen dem Pitch-Gate und den Oszillatoren, allerdings nur in der Gate-Weg einbauen. Damit versuchen wir zunächst
+den zeitlichen Verlauf einzustellen. Vibrato-Effekte lassen sich mit LFOs erzielen. Auch Rauschgeneratoren (Anblasgeräusche !) lassen sich in unseren Synthesizer integrieren. Ins Ergebnisprotokoll: Beschreibung zum
+Charakter des Klangs (Ähnlichkeit mit welchem Instrument?), Aufbau bzgl. des verwendeten Oszillators, ADSR-Einstellungen und Filtertyp. Endgültige Struktur des Synthesizers Ensemble-Datei, Klangprobe als wav,
+Hüllkurve als Bild, z.B. aus Samplitude</small></p>
+
 <p>L&ouml;sung</p>
 
-<br><h3>Aufgabe 1 - 1.2</h3>
-<p>L&ouml;sung</p>
-
-<br><h3>Aufgabe 2 - 2.1</h3>
-<p>L&ouml;sung</p>
-
-<br><h3>Aufgabe 2 - 2.2</h3>
-<p>L&ouml;sung</p>
-
-
+<p><b>Beschreibung zum Charakter des Klangs:</b></p>
+    
+    <p>Der Ton hat einen Abgespaceten Klang. Ähnlichkeit mit einem Theremin mit Verzerrungs-Effekt.(Scooter-Sound)</p> <p></p>
+    
+    <p><b>Struktur des Synthesizers Ensemble-Datei</b></p>
+    <p><b>Synthesizer</b></p>
+    
+    <img src="./pics/Space_Scooter_Instrument.PNG" alt="AbtastTheoremGrenzfall" width="350" height="300">
+    
+   <p>Zwei Oszilatoren die jeweils durch ein Sinus Module durch gehen und durch den Effekt SpaceMaster5.1 ein Theremin Klang bekommen. Beim A-LFO-Mix haben wir eine geringe Rate genommen und ein geringen Amplitudenwert, um einen tieferen Klang zu erhalten und eine langsamere Frequenz. </p>
+    
+    <p><b>wav Datei:</b></p>
+    <audio controls><source src="./audio/Space_Scooter.wav" type="audio/wav"></audio> <p></p><br> 
+    
+    <p><b>Hüllkurve</b> <small>Bild aus Samplitude</small></p>
+    <img src="./pics/Hüllkurve_Space_Scooter.png" alt="AbtastTheoremGrenzfall" width="350" height="300">
+    
+ 
 </body>
 </html>
