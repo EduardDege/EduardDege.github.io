@@ -93,16 +93,79 @@ dafür!</p>
 <p><b>L&ouml;sung</b></p>
 
 <h2>Bilder Luminanz/Chromanz</h2>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YCbCr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cr</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RGB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cr</p>
 <table><tr>
-    <td><img src="./pics/BlütenfeldR.bmp" alt="YCbCr" width="350" height="300"></td>
-    <td><img src="./pics/BlütenfeldG.bmp" alt="Y" width="350" height="300"></td>
-    <td><img src="./pics/BlütenfeldB.bmp" alt="Cb" width="350" height="300"></td>
-    <td><img src="./pics/BlütenfeldB.bmp" alt="Cr" width="350" height="300"></td>
+    <td><img src="./pics/BlütenfeldRGB.bmp" alt="rgb" width="350" height="300"></td>
+    <td><img src="./pics/BlütenfeldY.bmp" alt="Y" width="350" height="300"></td>
+    <td><img src="./pics/BlütenfeldCb.bmp" alt="Cb" width="350" height="300"></td>
+    <td><img src="./pics/BlütenfeldCr.bmp" alt="Cr" width="350" height="300"></td>
     </tr></table>
 <br>
 
 <p>Code</p>
+    
+<p>
+                    for (int y = 0; y &lt; bmp.image.getHeight(); y++) &#123; <br>
+                for (int x = 0; x &lt; bmp.image.getWidth(); x++) &#123; <br>
+                    PixelColor color = null; <br>
+                    int red = bmp.image.getRgbPixel(x, y).r;<br>
+                    int green = bmp.image.getRgbPixel(x, y).g;<br>
+                    int blue = bmp.image.getRgbPixel(x, y).b;<br>
+                    ArrayList&lt;Integer&gt; rgb = new ArrayList&lt;&gt;(Arrays.asList(red, green, blue)); <br><br><br>
+
+
+                    ArrayList&lt;Integer&gt; rgbToYCbCr = rgbCr(rgb);//eine der 3 methoden(rgbY, rgbCb oder rgbCr) wählen <br>
+                    int rY =   rgbToYCbCr.get(0);<br>
+                    int gY =   rgbToYCbCr.get(1);<br>
+                    int bY =   rgbToYCbCr.get(2);<br><br><br>
+
+
+                    color = new PixelColor(bY, gY, rY);<br>
+                    bmp.image.setRgbPixel(x, y, color);<br>
+                &#125;<br>
+            &#125;<br>
+private static ArrayList&lt;Integer&gt; rgbY(ArrayList&lt;Integer&gt; rgb, double lum)&#123;<br>
+        int red = rgb.get(0);<br>
+        int green = rgb.get(1);<br>
+        int blue = rgb.get(2);<br><br>
+
+        double Y = ((0.299red) + (0.587green) + (0.114*blue)) + lum;<br>
+        int yR = (int)Y;<br>
+        int yG = (int)Y;<br>
+        int yB = (int)Y;<br><br>
+
+         ArrayList&lt;Integer&gt; Yrgb = new ArrayList&lt;&gt;(Arrays.asList(yR, yG, yB));<br><br><br>
+
+
+        return Yrgb;<br>
+    &#125;<br>
+private static ArrayList&lt;Integer&gt; rgbCb(ArrayList&lt;Integer&gt; rgb)&#123;<br>
+        int red =  rgb.get(0);<br>
+        int green =  rgb.get(1);<br>
+        int blue =  rgb.get(2);<br><br>
+
+        int cbR = (int)(-0.1688red)+128;<br>
+        int cbG = (int)(-0.3312green)+128;<br>
+        int cbB = (int)(0.5*blue)+128;<br>
+
+        ArrayList&lt;Integer&gt; CbRgb = new ArrayList&lt;&gt;(Arrays.asList(cbR, cbG, cbB));<br><br>
+
+        return CbRgb;<br>
+    &#125;<br>
+private static ArrayList&lt;Integer&gt; rgbCr(ArrayList&lt;Integer&gt; rgb)&#123;<br>
+        int red =  rgb.get(0);<br>
+        int green =  rgb.get(1);<br>
+        int blue =  rgb.get(2);<br><br>
+
+        int crR = (int)(0.5red)+128;<br>
+        int crG = (int)(-0.4187green)+128;<br>
+        int crB = (int)(-0.0831*blue)+128;<br><br>
+
+        ArrayList&lt;Integer&gt; CrRgb = new ArrayList&lt;&gt;(Arrays.asList(crR, crG, crB));<br><br>
+
+        return CrRgb;<br>
+    &#125;<br>
+</p>
 
 <p><b>d.</b> Wandle zur Rekonstruktion deines Bildes die YCbCr Werte zurück in RGB.
 Ins Übungsprotokoll: Sourcecode, Bilder R, G, B bzw. Y, Cb und Cr, Rekonstruiertes Bild YCbCr -> RGB</p><br>
@@ -111,9 +174,24 @@ Ins Übungsprotokoll: Sourcecode, Bilder R, G, B bzw. Y, Cb und Cr, Rekonstruier
 
 <h2>Rekonstruktion von YCbCr in RGB</h2>
 
-<img src="./pics/BlütenfeldB.bmp" alt="YCbCr in RGB" width="350" height="300">
+<img src="./pics/BlütenfeldRGB.bmp" alt="YCbCr in RGB" width="350" height="300">
 
 <p>Code</p>
+
+<p>
+    private static ArrayList&lt;Double&gt; YCbCrToRGB(ArrayList&lt;Double&gt; YCbCr) &#123;<br>
+          double Y = YCbCr.get(0) + YCbCr.get(1) +YCbCr.get(2);<br>
+          double Cb = YCbCr.get(4) + YCbCr.get(5) +YCbCr.get(6);<br>
+          double Cr = YCbCr.get(7) + YCbCr.get(8) +YCbCr.get(9);<br><br>
+
+          double red = (int) ((1Y) + (0(Cb-128)) + (1.403(Cr-128)));<br>
+          double green = (int) ((1Y) + (-0.344(Cb-128)) + (-0.714(Cr-128)));<br>
+          double blue = (int) ((1Y) + (1.773(Cb-128)) + (0*(Cr-128)));<br><br><br>
+
+
+          return new ArrayList&lt;&gt;(Arrays.asList(red, green, blue));<br>
+     &#125;
+</p>
 
 
 
@@ -129,7 +207,28 @@ Ins Übungsprotokoll: Sourcecode, Histogramm des Bildes </p>
 
 <h2>Histogramm</h2>
 
-<img src="./pics/BlütenfeldB.bmp" alt="Histogramm" width="350" height="300">
+<img src="./pics/chart.png" alt="Histogramm" width="600" height="400">
+    
+    <p>Code</p>
+    <p>
+    for (int y = 0; y &lt; bmp.image.getHeight(); y++) {<br>
+             for (int x = 0; x &lt; bmp.image.getWidth(); x++) {<br><br>
+
+                 int red = bmp.image.getRgbPixel(x, y).r;<br>
+                 int green = bmp.image.getRgbPixel(x, y).g;<br>
+                 int blue = bmp.image.getRgbPixel(x, y).b;<br><br>
+
+                 int av = (red+green+blue)/3;<br><br><br>
+
+
+                 if (av &gt;= 0 &#038;&#038; av &lt;= 255) {<br>
+                       histogramm.set(av, histogramm.get(av)+1);<br>
+                    } else {<br>
+                       throw new RuntimeException("Außerhalb des Intervall(0-255)");<br>
+                    }<br>
+             }<br>
+             }<br>
+    </p>
 
 <br><h1><b>Aufgabe 3: Helligkeit und Kontrast</b></h1>  
 
@@ -150,13 +249,13 @@ Bildes</p>
 
 <h2>Minimale Helligkeit</h2>
 
-<img src="./pics/BlütenfeldB.bmp" alt="Histogramm-Minimale Helligkeit" width="350" height="300">
+<img src="./pics/BlutenfeldMinY.bmp" alt="Histogramm-Minimale Helligkeit" width="350" height="300">
 
 <br>
 
 <h2>Maximale Helligkeit</h2>
 
-<img src="./pics/BlütenfeldB.bmp" alt="Histogramm-Maximale Helligkeit" width="350" height="300">
+<img src="./pics/BlutenfeldMaxY.bmp" alt="Histogramm-Maximale Helligkeit" width="350" height="300">
 
 <p>Code</p>
     
@@ -172,17 +271,15 @@ Minimum/Maximum für Helligkeit und Kontrast mit dazugehörigen Histogrammen, Al
     
 <p><b>L&ouml;sung</b></p>
 
-<h2>Kontrastärmste Bild</h2>
+<h2>Kontrastärmstes Bild</h2>
 
-<img src="./pics/BlütenfeldB.bmp" alt="Kontrastärmste Bild" width="350" height="300">
-
-<img src="./pics/BlütenfeldB.bmp" alt="Kontrastärmste Bild Histogramm" width="350" height="300">
+<img src="./pics/LowKontrast.bmp" alt="Kontrastärmste Bild" width="350" height="300">
 
 <h2>Kontrastreichestes Bild</h2>
 
-<img src="./pics/BlütenfeldB.bmp" alt="Kontrastärmste Bild" width="350" height="300">
+<img src="./pics/HighKontrast.bmp" alt="Kontrasreichtes Bild" width="350" height="300">
 
-<img src="./pics/BlütenfeldB.bmp" alt="Kontrastärmste Bild Histogramm" width="350" height="300">
+
 
 <p>Code</p>
     
