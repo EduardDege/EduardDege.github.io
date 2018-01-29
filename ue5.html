@@ -51,7 +51,106 @@
     
     <p>Ins Übungsprotokoll: Sourcecode, wavs Musik und Sinus, Ausschnitte vom Clipping (Samplitude), Frequenzspektrum der verstärkten Sinussignale (GRAM), Berechnungen Klirrfaktor k.</p>
     
+    <p><b>1.a</b>
     <p><b>L&ouml;sung</b></p>
+    
+<pre><code>short max = Short.MAX_VALUE;
+             short min = Short.MIN_VALUE;
+            double db = 12;
+            for (int i=0; i &lt; samples;i++) {
+                short sample = readWavFile.sound[i];
+                short rSample = 0;
+                double vf = Math.pow(10, db/20);
+                double r = sample * vf;
+
+                if(r > max) {
+                    rSample = max;
+                }else if(r &lt; min) {
+                    rSample = min;
+                }else {
+                    rSample = (short)r;
+                }
+                readWavFile.sound[i] = rSample;
+
+            	&rcub;</code></pre><br>
+    
+    <p><b>Aufnahme bei 3dB</b></p>
+    <audio controls><source src="./audio/3dB.wav" type="audio/wav"></audio><br>
+        
+    <p><b>Aufnahme bei 6dB</b></p>
+    <audio controls><source src="./audio/6dB.wav" type="audio/wav"></audio><br>
+    
+         <p><b>Aufnahme bei 9dB</b></p>
+    <audio controls><source src="./audio/9dB.wav" type="audio/wav"></audio><br>
+    
+    
+    
+    <br><br><p><b>1.b</b>
+    <p><b>L&ouml;sung</b></p>
+    
+    <p>Es ist eine Verzerung bei 9dB leicht zu hören verstärkt zu erkennen ist sie bei 12dB </p>
+     
+    <p><b>Aufnahme bei 12dB</b></p>
+    <audio controls><source src="./audio/12dB.wav" type="audio/wav"></audio><br>
+    
+    <br><br><p><b>1.c</b>
+     <p><b>L&ouml;sung</b></p>
+    
+    <p> <b>6dB</b><br><br>
+    <img src="./pics/gram6db.png" alt="6dB-gram" width="350" height="300">
+        <p><b>9db</b><br><br>
+    <img src="./pics/gram9db.png" alt="9dB-gram" width="350" height="300">
+        <p><b>12dB</b><br><br>
+    <img src="./pics/gram12db.png" alt="12dB-gram" width="350" height="300">
+ 
+<br><br>
+    
+     <table border=8 cellpadding=12>
+      <tr>
+        <th>Frequenzen Hz</th>
+        <th>Starpoint</th>
+        <th>6 dB</th>
+        <th>9 dB</th>
+        <th>12 dB</th>
+      </tr>
+      <tr>
+        <td>1000</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        
+      </tr>
+      <tr>
+        <td>3000</td>
+        <td>n/a</td>
+        <td>-25</td>
+        <td>-23</td>
+        <td>-17</td>
+       
+      </tr>
+    <tr>
+        <td>5000</td>
+        <td>n/a</td>
+        <td>-45</td>
+        <td>-39</td>
+        <td>-32</td>
+     
+      </tr>
+          <tr>
+        <td>7000</td>
+        <td>n/a</td>
+        <td>-55</td>
+        <td>-45</td>
+        <td>-33</td>
+      
+      </tr>
+    </table>
+    <p></p><br><br>
+    
+    
+    
+    
     
     <h1>2. Aufgabe: Echo</h1>
     
@@ -65,6 +164,61 @@
     Ins Übungsprotokoll: Sourcecode, wavs Sprache und Musik</p>
     
     <p><b>L&ouml;sung</b></p>
+    
+     <p><b>2.a</b>
+     
+ <pre><code>//MONO
+             double delay= 200;
+            int n = (int) (delay/1000 * sampleRate);
+            short[] echo = new short[readWavFile.sound.length];
+
+            for (int i=0; i &lt; samples;i++) {
+
+                if(i >= n) {
+                    echo[i] = (short) ((readWavFile.sound[i] * 0.5) + (0.5 * 0.6 *readWavFile.sound[i - n]));
+                }else {
+                    echo[i] = (short) (readWavFile.sound[i] * 0.5);
+                }
+
+
+            }</code></pre>
+    
+<pre><code>// Stereo
+            double sDelay = 10;
+            int sN = (int) (2*(sDelay/1000 * sampleRate));
+            short[] sEcho = new short[readWavFile.sound.length];
+            for (int i=0; i &lt; samples/2;i++) {
+
+                if(i >= sN) {
+                    sEcho[i] = (short) ((readWavFile.sound[i] * 0.5) + (0.5 * 0.6 *readWavFile.sound[i - sN]));
+                }else {
+                    sEcho[i] = (short) (readWavFile.sound[i] * 0.5);
+                }
+
+            }</code></pre>
+    
+    <br><br>
+    <h2><b>Aufnahme Sprache</b></h2>
+     <p><b>Sprache 10ms</b></p>
+    <audio controls><source src="./audio/Sdelay10.wav" type="audio/wav"></audio>
+        
+    <p><b>Sprache 100ms</b></p>
+    <audio controls><source src="./audio/Sdelay100.wav" type="audio/wav"></audio>
+    
+    <p><b>Sprache 200ms</b></p>
+    <audio controls><source src="./audio/Sdelay200.wav" type="audio/wav"></audio><br><br><br>
+    
+    <h2><b>Aufnahme Musik</b></h2>  
+    <p><b>Musik 10ms</b></p>
+    <audio controls><source src="./audio/delay10.wav" type="audio/wav"></audio><br>
+        
+    <p><b>Musik 100ms</b></p>
+    <audio controls><source src="./audio/delay100.wav" type="audio/wav"></audio><br>
+    
+    <p><b>Musik 200ms</b></p>
+    <audio controls><source src="./audio/delay200.wav" type="audio/wav"></audio><br>
+    
+    <p><b>2.b</b>
 
     <h1>3. Aufgabe: Einfaches Filter</h1>
     
@@ -76,8 +230,39 @@
     <p><b>b.</b> Zum Testen der Filter verwendet Weißes Rauschen, das alle Frequenzen enthält. Wenn wir nun den Frequenzverlauf des Originalaudios mit dem gefilterten vergleichen, muss sich ein Verlauf wie in der unteren Darstellung ergeben. Um eine Glättung des Spektrums zu erzielen, bei GRAM 'Spectrum Average' auf 100 setzen. Um was für eine Art Filter handelt es sich jeweils?</p>
     
     <p>Ins Übungsprotokoll: Sourcecode, wavs Musik und Rauschen, Frequenzverlauf GRAM</p>
-
     
+        <p><b>L&ouml;sung</b></p>
+    
+     <p><b>3.a</b>
+ <pre><code>short[] filter = new short[readWavFile.sound.length];
+            for(int i=2; i &lt; i++) {
+                filter[i]= (short)(readWavFile.sound[i] * 0.5 + 0.45 * readWavFile.sound[i-2]);
+            }
+            for(int i=2; i &lt; samples; i++) {
+                filter[i]= (short)(readWavFile.sound[i] * 0.5 - 0.45 * readWavFile.sound[i-2]);
+            }</code></pre>
+    
+    <p></p>
+    <p><b>Musik Aufnahme</b></p>
+    <audio controls><source src="./audio/Musik_DegeSondowski.wav" type="audio/wav"></audio>
+        
+    <p><b>Musik minus</b></p>
+    <audio controls><source src="./audio/musik_minus.wav" type="audio/wav"></audio>
+    
+    <p><b>Musik plus</b></p>
+    <audio controls><source src="./audio/musik_plus.wav" type="audio/wav"></audio><br><br><br>
+    
+    <p><b>3.b</b>     
+    
+    <p></p>
+     <p><b>Weißes Rauschen</b></p>
+    <audio controls><source src="./audio/white_noise_ue5.wav" type="audio/wav"></audio>
+        
+    <p><b>Rauschen minus</b></p>
+    <audio controls><source src="./audio/noise_minus.wav" type="audio/wav"></audio>
+    
+    <p><b>Rauschen plus</b></p>
+    <audio controls><source src="./audio/noise_plus.wav" type="audio/wav"></audio>
     
     </body>
 </html>
