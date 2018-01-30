@@ -1,0 +1,180 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Medientechnologien</title>
+    <link rel="stylesheet" type="text/css" href="format.css">
+    <style type="text/css">
+        <!-- a:link {
+            font-family: Arial;
+            font-size: 10pt;
+            text-decoration: none;
+        }
+
+        a:visited {
+            font-family: Arial;
+            font-size: 10pt;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #FF3333;
+            text-decoration: none;
+            font-weight: normal;
+            font-size: 10pt;
+        }
+
+        h1,
+        h2,
+        h3,
+        td,
+        tr,
+        p {
+            font-family: Arial
+        } //-->
+    </style>
+</head>
+
+<body>
+
+    <iframe src="oben.html" width="800" height="120" name="IFrame3" id="IFrame3" scrolling="no" frameborder="0">
+         <p>Ihr Browser kann leider keine eingebe5tteten Frames anzeigen:Sie k&ouml;nnen die eingebettete Seite &uuml;ber den
+         folgenden.</p>
+</iframe>
+
+    <h1><b>&Uuml;bung 6</b></h1>
+    
+    <p><b>Einleitung:</b> Nutze für die Aufgaben die neue Java bmp_io_ue6_vStud.java. Für die Übung benötigt ihr außerdem eure eigenen Bildaufnahmen (Detail und Fläche), und zwar die Graustufenversionen nach der Formel Y=0.3 x R + 0,6 x G + 0,1 x B.</p>
+
+    <br>
+    
+    <h2><b>Aufgabe 1:</b> Mittelwertfilter (Tiefpass)</h2>
+    
+    <p><b>a.</b> Erweitere bmp_io so, dass ein Filter mit einem Kernel von 3x3 Pixeln angewandt werden kann. Beim Mittelwertfilter wird ein Zielpixel aus dem Mittelwert aller Pixel im Kernel im Originalbild berechnet. Beschreibe die Wirkung des Filters auf deine Bilder! </p>
+    
+    <p><b>b.</b> Wie verfährt man bei der Berechnung des Filters mit den Randpixeln?</p>
+    
+    <p><b>c.</b> Erweitere bmp_io so, dass das Differenzbild zwischen dem gefilterten und dem Originalbild berechnet werden kann (analog zu Übung 2, Aufgabenpunkt 3.3)! Dieses muss offensichtlich die Information zeigen, die das Filter entfernt hat. Beachte dabei, dass du das Differenzbild möglicherweise im Kontrast verstärken musst (siehe Übung 4). </p>
+
+    
+    <p><b>L&ouml;sung</b></p>
+    
+    <p><b>1a</b></p>
+    
+    <pre><code>---...-------CODE--------..-----</code></pre>
+    
+    
+    <p>Originale</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <br>
+    
+    <p>Mittelwertfilter</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <p>Mann kann erkennen das die Bilder erheblich an Schärfe verloren haben</p>
+    
+    <p><b>1b</b></p>
+    
+    <p>Für die Mittelwertberechnung bekommen die Pixel die außerhalb des Bildes liegen den wert 0.</p>
+    
+    <p><b>1c</b></p>
+    
+    <pre><code>---...---CODE---...---</code></pre>
+    
+    <p>Differenz Bilder</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <br>
+    
+    <p>Kontrasverstärkte Bilder</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <br>
+    
+    <h2><b>Aufgabe 2:</b> Gradientenfilter</h2>
+    
+    <p><b>a.</b> Wende nun den folgenden 3*3 Kernel auf deine Bilder an! Beachte dabei, dass bei der direkten Anwendung der Vorschrift Werte > 255 entstehen können. Durch welchen Wert muss also die Intensität des Zielpixels geteilt werden, damit man wieder in den erlaubten Bereich 0…255 kommt? Beschreibe die Wirkung des Filters auf deine Bilder!</p>
+    
+        <img src="./pics/matrix.png " alt="Matrix" width="" height="">
+    
+    <p><b>b.</b> Berechne wiederum das Differenzbild zwischen dem gefilterten und dem Originalbild! Beachte
+    dabei ebenfalls, dass du das Differenzbild möglicherweise im Kontrast verstärken musst. </p>
+    
+    <p><b>L&ouml;sung</b></p>
+    
+    <p><b>2a</b></p>
+    
+    <pre><code>---...-------CODE--------..-----</code></pre>
+    
+    <p><b>2b</b></p>
+    
+    <p>Gradientenfilter Bilder</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <br>
+    
+    <p>Differenz Bilder</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <p>Durch den Filter werden die Bilder deutlich schärfer und kontrastreicher.</p>
+    <p>--------...------------TEXT--------...-------</p>
+    
+    <br>
+    
+    <h2><b>Aufgabe 3:</b> Medianfilter</h2>
+    
+    <p>Das Medianfilter reiht alle Pixelintensitäten im Filterkernel der Größe nach auf und gibt den
+    Intensitätswert aus, der an der mittleren Position steht. Es wird oft zur Beseitigung von Kratzern oder
+    punktförmigen Bildfehlern verwendet. Füge zunächst mit Paint deinem Flächenbild zehn „Fehler“
+    hinzu, wie es in dem folgenden Beispiel zu sehen ist. Benutze dazu einen weißen Stift mit der
+    Strichstärke 2 Pixel. Programmiere das Medianfilter für deine 3x3-Pixelmatrix und berechne das
+    Ergebnisbild.</p>
+    
+    <p><b>L&ouml;sung</b></p>
+    
+    <p><b>3</b></p>
+    
+    <pre><code>---...-------CODE--------..-----</code></pre>
+    
+    <p>Bilder des beschädigten Originals</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <br>
+    
+    <p>Medianfilter</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <br>
+    
+    <h2><b>Aufgabe 4:</b> Sobel-Filter</h2>
+    
+    <p>Das Sobel-Filter dient der Detektion von Kanten im Bild. Programmiere ein Sobel-Filter für die x- und
+    ein Sobel-Filter für die y-Richtung und wende sie auf deine Bilder  an! Die Matrizen für das SobelFilter
+    finden sich im pdf zur Bildfilterung.</p>
+    
+    <p><b>L&ouml;sung</b></p>
+    
+    <p><b>4</b></p>
+    
+    <pre><code>---...-------CODE--------..-----</code></pre>
+
+    <p>Bilder Horizontal</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+    <br>
+    
+    <p>Bilder Vertikal</p>
+    <img src="./pics/" alt="" width="350" height="300">
+    <img src="./pics/" alt="" width="350" height="300">
+    
+</body>
+</html>
