@@ -60,6 +60,23 @@
     
     <p><b>1a</b></p>
     
+    <p>Originale</p>
+    <img src="./pics/BlutenfeldY.bmp" alt="" width="350" height="300">
+    <img src="./pics/WandY.bmp" alt="" width="350" height="300">
+    
+    <br>
+    
+    <p>Mittelwertfilter</p>
+    <img src="./pics/BlutenfeldYMittelwertFilter.bmp" alt="" width="350" height="300">
+    <img src="./pics/WandYMittelwertFilter.bmp" alt="" width="350" height="300">
+    
+    <p>Mann kann erkennen das die Bilder erheblich an Schärfe und Helligkeit verloren haben</p>
+    
+    <p><b>1b</b></p>
+    
+    <p><b>Mittelwertberechnung:</b> alle Randpixel haben den wert 0</p>
+    
+        
     <pre><code>for(int y = 1; y &lt; bmp.image.getHeight()-1; y++) {
             for(int x = 1;x &lt; bmp.image.getWidth()-1; x++) {
                   int[][] kernel = new int[3][3];
@@ -87,23 +104,6 @@
                   bmp_f.image.setRgbPixel(x, y, pc_f);
             }
         }</code></pre>
-    
-    <br><br>
-    <p>Originale</p>
-    <img src="./pics/BlutenfeldY.bmp" alt="" width="350" height="300">
-    <img src="./pics/WandY.bmp" alt="" width="350" height="300">
-    
-    <br>
-    
-    <p>Mittelwertfilter</p>
-    <img src="./pics/BlutenfeldYMittelwertFilter.bmp" alt="" width="350" height="300">
-    <img src="./pics/WandYMittelwertFilter.bmp" alt="" width="350" height="300">
-    
-    <p>Mann kann erkennen das die Bilder erheblich an Schärfe und Helligkeit verloren haben</p>
-    
-    <p><b>1b</b></p>
-    
-    <p><b>Mittelwertberechnung:</b> alle Randpixel haben den wert 0</p>
     
     <p><b>1c</b></p>
     
